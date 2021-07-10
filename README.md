@@ -1,8 +1,5 @@
 # DB設計
 
-https://github.com/kyouheisunaga/machine_life.git
-
-
 ## usersテーブル
 
 |Column|Type|Options|
