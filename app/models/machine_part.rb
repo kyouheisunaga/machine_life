@@ -1,0 +1,2 @@
+class MachinePart < ApplicationRecord
+end

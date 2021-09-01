@@ -1,0 +1,25 @@
+- if stock_part.errors.present?
+  ul#error_explanation
+    - stock_part.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: stock_part, local:true do |f|
+  .form-group
+    = f.label :stock_parts_name
+    = f.text_field :stock_parts_name, class: 'form-control', id: 'stock_part_stock_parts_name'
+  .form-group
+    = f.label :model
+    = f.text_field :model, class: 'form-control', id: 'stock_part_model'
+  .form-group
+    = f.label :maker
+    = f.text_field :maker, class: 'form-control', id: 'stock_part_maker'
+  .form-group
+    = f.label :stock
+    = f.number_field :stock, class: 'form-control', id: 'stock_part_stock'
+  .form-group
+    = f.label :price
+    = f.number_field :price, class: 'form-control', id: 'stock_part_price'
+  .form-group
+    = f.label :stock_parts_details_memo
+    = f.text_area :stock_parts_details_memo, rows: 5, class: 'form-control', id: 'stock_part_stock_parts_details_memo'
+  = f.submit nil, class: 'btn btn-primary'

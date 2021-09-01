@@ -1,0 +1,6 @@
+h1 在庫部品編集
+
+.nav.justify-content-end
+  = link_to '在庫部品一覧に戻る', stock_parts_path, class: 'nav-link'
+
+= render partial: 'form', locals: { stock_part: @stock_part}

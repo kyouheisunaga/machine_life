@@ -1,0 +1,2 @@
+class Odering < ApplicationRecord
+end

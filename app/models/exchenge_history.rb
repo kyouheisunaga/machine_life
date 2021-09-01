@@ -1,0 +1,2 @@
+class ExchengeHistory < ApplicationRecord
+end

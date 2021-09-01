@@ -38,9 +38,11 @@
 |stock                   |integer|null: false|
 |price                   |integer|null: false|
 |stock_parts_details_memo|text   |
-
+<!-- stock_partsテーブルにデータを登録できたら、↓下の1行のカラムを追加する -->
+|user_id                 |integer|null: false, foreign_key: true|
 
 ### Association
+- belongs_to :user
 - has_many :machine_parts, dependent: :destroy
 
 ## machine_partsテーブル
@@ -84,7 +86,7 @@
 ### Association
 - belongs_to :machine_part
 
-## exchange_historysテーブル
+## exchange_historiesテーブル
 
 |Column|Type|Options|
 |------|----|-------|

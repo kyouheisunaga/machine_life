@@ -1,0 +1,2 @@
+module MachinePartsHelper
+end

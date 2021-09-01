@@ -1,0 +1,33 @@
+h1 在庫部品一覧
+
+= link_to '在庫部品を登録する', new_stock_part_path, class: 'btn btn-primary'
+
+= link_to '設備部品一覧を見る',machine_parts_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= StockPart.human_attribute_name(:id)
+      th= StockPart.human_attribute_name(:stock_parts_name)
+      th= StockPart.human_attribute_name(:model)
+      th= StockPart.human_attribute_name(:maker)
+      th= StockPart.human_attribute_name(:stock)
+      th= StockPart.human_attribute_name(:price)
+      th= StockPart.human_attribute_name("在庫部品詳細")
+      th
+      th
+  tbody
+    - @stock_parts.each do |stock_part|
+      tr
+        td= stock_part.id
+        td= link_to stock_part.stock_parts_name, stock_part
+        td= stock_part.model
+        td= stock_part.maker
+        td= stock_part.stock
+        td= stock_part.price
+        td= link_to "詳細を見る", stock_part
+        td
+          = link_to '編集する', edit_stock_part_path(stock_part), class: 'btn btn-primary mr-3'
+        td
+          = link_to '削除する', stock_part, method: :delete, data: { confirm: "「#{stock_part.stock_parts_name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
