@@ -1,8 +1,11 @@
 h1 在庫部品一覧
 
-= link_to '在庫部品を登録する', new_stock_part_path, class: 'btn btn-primary'
+- if user_signed_in?
+  = link_to '在庫部品を登録する', new_stock_part_path, class: 'btn btn-primary'
 
 = link_to '設備部品一覧を見る',machine_parts_path, class: 'btn btn-primary'
+
+= link_to '設備一覧を見る', machines_path, class: 'btn btn-primary'
 
 .mb-3
 table.table.table-hover

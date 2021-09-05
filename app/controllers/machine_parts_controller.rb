@@ -1,4 +1,5 @@
 class MachinePartsController < ApplicationController
+  before_action :move_to_index, except: [:index]
   def index
   end
 
@@ -22,5 +23,9 @@ class MachinePartsController < ApplicationController
 
   def machine_part_params
     params.require(:machine_part).permit(:machine_parts_details_memo, :replacement_procedure_memo)
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end

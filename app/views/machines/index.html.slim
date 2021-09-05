@@ -1,0 +1,8 @@
+h1 設備一覧
+
+- if user_signed_in?
+  = link_to '設備を登録する', new_machine_path, class: 'btn btn-primary'
+
+= link_to '設備部品一覧を見る',machine_parts_path, class: 'btn btn-primary'
+
+= link_to '在庫部品一覧を見る', stock_parts_path, class: 'btn btn-primary'

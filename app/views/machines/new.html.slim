@@ -1,0 +1,15 @@
+h1 設備登録
+
+.nav.justify-content-end
+  = link_to '設備一覧に戻る',machines_path, class: 'nav-link'
+
+= form_with model: @machine, local:true do |f|
+  .form-group
+    = f.label :machine_name
+    = f.text_field :machine_name, class: 'form-control', id: 'machine_machine_name'
+  .form-group
+    = f.label :machine_operating_time_accumulation
+    nobr （数字の０を入力してください）
+    = f.number_field :machine_operating_time_accumulation, class: 'form-control', id: 'machine_machine_operating_time_accumulation'
+
+  = f.submit nil, class: 'btn btn-primary'

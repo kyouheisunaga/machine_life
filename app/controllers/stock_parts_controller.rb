@@ -1,4 +1,6 @@
 class StockPartsController < ApplicationController
+  before_action :move_to_index, except: [:index]
+
   def index
     @stock_parts = StockPart.all
   end
@@ -15,7 +17,7 @@ class StockPartsController < ApplicationController
     @stock_part = StockPart.new(stock_part_params)
 
     if @stock_part.save
-      redirect_to @stock_parts_url, notice:"在庫部品「#{@stock_part.stock_parts_name}」を登録しました"
+      redirect_to stock_parts_url, notice:"在庫部品「#{@stock_part.stock_parts_name}」を登録しました"
     else
       render :new
     end
@@ -43,4 +45,7 @@ class StockPartsController < ApplicationController
     params.require(:stock_part).permit(:stock_parts_name, :model, :maker, :stock, :price, :stock_parts_details_memo)
   end
 
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end

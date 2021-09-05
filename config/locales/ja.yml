@@ -10,6 +10,7 @@ ja:
     models:
       machine_part: 設備部品
       stock_part: 在庫部品
+      machine: 設備
       user: ユーザー
     attributes:
       user:
@@ -58,6 +59,10 @@ ja:
         stock_parts_details_memo: 詳細メモ
         created_at: 登録日時
         updated_at: 更新日時
+      machine:
+        id: ID
+        machine_name: 設備名
+        machine_operating_time_accumulation: 設備稼働時間積算
     helpers:
       select:
         prompt: 選択してください

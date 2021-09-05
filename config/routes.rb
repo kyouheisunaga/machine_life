@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'machine_parts#index'
   resources :machine_parts
   resources :stock_parts
+  resources :machines
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',

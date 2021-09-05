@@ -14,6 +14,7 @@
 
 ### Association
 - has_many :machines, dependent: :destroy
+- has_many :stock_parts, dependent: :destroy
 
 ## machinesテーブル
 
@@ -22,7 +23,6 @@
 |machine_name                       |string |null: false, unique: true|
 |machine_operating_time_accumulation|integer|null: false|
 |user_id                            |integer|null: false, foreign_key: true|
-|machine_part_id                    |integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user

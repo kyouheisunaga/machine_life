@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_033351) do
+ActiveRecord::Schema.define(version: 2021_09_05_084822) do
 
   create_table "exchenge_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "exchange_history", null: false
@@ -41,12 +41,11 @@ ActiveRecord::Schema.define(version: 2021_09_01_033351) do
   end
 
   create_table "machines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "machine_name", null: false
     t.integer "machine_operating_time_accumulation", null: false
     t.integer "user_id", null: false
-    t.integer "machine_part_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "machine_name"
   end
 
   create_table "oderings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -64,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_033351) do
     t.text "stock_parts_details_memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
