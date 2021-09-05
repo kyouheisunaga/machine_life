@@ -1,0 +1,44 @@
+h2 ユーザー情報変更
+
+.nav.justify-content-end
+  = link_to '設備部品一覧に戻る', machine_parts_path, class: 'nav-link'
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = render "devise/shared/error_messages", resource: resource
+
+  .form-group
+    = f.label :username
+    = f.text_field :username, class: 'form-control'
+
+  .form-group
+    = f.label :email
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+
+  .form-group
+    = f.label :password
+    - if @minimum_password_length
+      <em>
+      = @minimum_password_length
+      nobr 文字</em>
+    <i>(変更したくない場合は空白のままにします)</i>
+    = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+
+  .form-group
+    = f.label :current_password
+    = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
+
+  = f.submit "変更する", class:'btn btn-primary'
+
+h3 ユーザー情報を削除する
+
+= button_to "ユーザー情報を削除する", registration_path(resource_name), data: { confirm: "削除します。よろしいですか？" }, method: :delete, class: 'btn btn-danger'
+
+.nav.justify-content-end
+  = link_to "戻る", :back, class: 'nav-link'
