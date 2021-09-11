@@ -38,7 +38,6 @@
 |stock                   |integer|null: false|
 |price                   |integer|null: false|
 |stock_parts_details_memo|text   |
-<!-- stock_partsテーブルにデータを登録できたら、↓下の1行のカラムを追加する -->
 |user_id                 |integer|null: false, foreign_key: true|
 
 ### Association
