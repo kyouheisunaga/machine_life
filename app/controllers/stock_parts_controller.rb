@@ -42,7 +42,7 @@ class StockPartsController < ApplicationController
   private
 
   def stock_part_params
-    params.require(:stock_part).permit(:stock_parts_name, :model, :maker, :stock, :price, :stock_parts_details_memo)
+    params.require(:stock_part).permit(:stock_parts_name, :model, :maker, :stock, :price, :stock_parts_details_memo).merge(user_id: current_user.id)
   end
 
   def move_to_index
