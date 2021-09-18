@@ -1,8 +1,32 @@
 h1 設備一覧
 
 - if user_signed_in?
-  = link_to '設備を登録する', new_machine_path, class: 'btn btn-primary'
+  .nav.justify-content-end
+    = link_to '設備を登録する', new_machine_path, class: 'btn btn-primary'
+    = link_to '設備部品一覧を見る', machine_parts_path, class: 'nav-link'
+    = link_to '在庫部品一覧を見る', stock_parts_path, class: 'nav-link'
+    = link_to '設備一覧を見る', machines_path, class: 'nav-link'
 
-= link_to '設備部品一覧を見る',machine_parts_path, class: 'btn btn-primary'
-
-= link_to '在庫部品一覧を見る', stock_parts_path, class: 'btn btn-primary'
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Machine.human_attribute_name("番号")
+      th= Machine.human_attribute_name(:machine_name)
+      th= Machine.human_attribute_name(:addition)
+      th= Machine.human_attribute_name("設備詳細")
+      th
+      th
+  tbody
+    - a = 1
+    - @machines.each do |machine|
+      tr
+        td= a
+        - a += 1
+        td= link_to machine.machine_name, machine
+        td= machine.addition
+        td= link_to "詳細を見る", machine
+        td
+          = link_to '積算する', edit_machine_path(machine), class: 'btn btn-primary mr-3'
+        td
+          = link_to '削除する', machine, method: :delete, data: { confirm: "「#{machine.machine_name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

@@ -1,2 +1,57 @@
-h1 MachineParts#show
-p Find me in app/views/machine_parts/show.html.slim
+h1 設備部品詳細
+
+.nav.justify-content-end
+  = link_to '設備一覧に戻る', machine_parts_path, class: 'nav-link'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= StockPart.human_attribute_name(:id)
+      th= StockPart.human_attribute_name(:stock_parts_name)
+      th= StockPart.human_attribute_name(:model)
+      th= StockPart.human_attribute_name(:maker)
+      th= StockPart.human_attribute_name(:stock)
+      th= StockPart.human_attribute_name(:price)
+  tbody
+    td= @stock_part.id
+    td= @stock_part.stock_parts_name
+    td= @stock_part.model
+    td= @stock_part.maker
+    td= @stock_part.stock
+    td= @stock_part.price
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= MachinePart.human_attribute_name(:id)
+      th= MachinePart.human_attribute_name(:number_of_use)
+      th= MachinePart.human_attribute_name(:replacement_frequency_setting)
+      th= MachinePart.human_attribute_name(:machine_parts_operating_time_accumulation)
+      th= MachinePart.human_attribute_name(:exchange_announcement)
+      th= MachinePart.human_attribute_name(:order_announcement)
+  tbody
+    td= @machine_part.id
+    td= @machine_part.number_of_use
+    td= @machine_part.replacement_frequency_setting
+    td= @machine_part.machine_parts_operating_time_accumulation
+    td= @machine_part.exchange_announcement
+    td= @machine_part.order_announcement
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= MachinePart.human_attribute_name(:machine_parts_details_memo)
+  tbody
+    td= simple_format(h(@machine_part.machine_parts_details_memo), {}, sanitize: false, wrapper_tag: "div")
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= MachinePart.human_attribute_name(:replacement_procedure_memo)
+  tbody
+    td= simple_format(h(@machine_part.replacement_procedure_memo), {}, sanitize: false, wrapper_tag: "div")
+
+= link_to '編集する', edit_machine_part_path, class: 'btn btn-primary mr-3'
+= link_to '削除する', @machine_part, method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'

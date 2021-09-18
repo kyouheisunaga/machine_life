@@ -63,6 +63,7 @@ ja:
         id: ID
         machine_name: 設備名
         machine_operating_time_accumulation: 設備稼働時間積算
+        addition: 積算値
     helpers:
       select:
         prompt: 選択してください

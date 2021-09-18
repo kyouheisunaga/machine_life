@@ -1,2 +1,34 @@
-h1 MachineParts#edit
-p Find me in app/views/machine_parts/edit.html.slim
+h1 設備部品の編集
+
+.nav.justify-content-end
+  = link_to '設備部品一覧に戻る',machine_parts_path, class: 'nav-link'
+
+= form_with model: @machine_part, local:true do |f|
+  .form-group
+    p 設備名
+    = f.collection_select :machine_id, Machine.all, :id, :machine_name, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_machine_id'}
+  .form-group
+    p 型式
+    = f.collection_select :stock_part_id, StockPart.all, :id, :model, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_stock_part_id'}
+  .form-group
+    = f.label :number_of_use
+    = f.number_field :number_of_use, class: 'form-control', id: 'machine_part_number_of_use'
+  .form-group
+    = f.label :replacement_frequency_setting
+    = f.number_field :replacement_frequency_setting, class: 'form-control', id: 'machine_part_replacement_frequency_setting'
+  .form-group
+    = f.label :exchange_announcement
+    = f.number_field :exchange_announcement, class: 'form-control', id: 'machine_part_exchange_announcement'
+  .form-group
+    = f.label :order_announcement
+    = f.number_field :order_announcement, class: 'form-control', id: 'machine_part_order_announcement'
+  .form-group
+    = f.label :machine_parts_operating_time_accumulation
+    = f.number_field :machine_parts_operating_time_accumulation, class: 'form-control', id: 'machine_part_machine_parts_operating_time_accumulation'
+  .form-group
+    = f.label :machine_parts_details_memo
+    = f.text_area :machine_parts_details_memo, rows: 5, class: 'form-control', id: 'machine_part_machine_parts_details_memo'
+  .form-group
+    = f.label :replacement_procedure_memo
+    = f.text_area :replacement_procedure_memo, rows: 5, class: 'form-control', id: 'machine_part_replacement_procedure_memo'
+  = f.submit nil, class: 'btn btn-primary'

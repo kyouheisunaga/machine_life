@@ -22,6 +22,7 @@
 |------|----|-------|
 |machine_name                       |string |null: false, unique: true|
 |machine_operating_time_accumulation|integer|null: false|
+|addition                           |integer||
 |user_id                            |integer|null: false, foreign_key: true|
 
 ### Association

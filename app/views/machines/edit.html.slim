@@ -1,2 +1,33 @@
-h1 Machines#edit
-p Find me in app/views/machines/edit.html.slim
+h1 稼働時間積算入力・設備編集
+
+.nav.justify-content-end
+  = link_to '設備一覧に戻る',machines_path, class: 'nav-link'
+
+- if @machine.errors.present?
+  ul#error_explanation
+    - @machine.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: @machine, local:true do |f|
+  .mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= "稼働時間を積算する"
+  .form-group
+    = f.label :machine_operating_time_accumulation
+    = f.number_field :machine_operating_time_accumulation, class: 'form-control', id: 'machine_machine_operating_time_accumulation'
+  = f.submit nil, class: 'btn btn-primary'
+  .mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= "設備情報を編集する"
+  .form-group
+    = f.label :machine_name
+    = f.text_field :machine_name, class: 'form-control', id: 'machine_machine_name'
+  .form-group
+    = f.label :addition
+    nobr （数字の０を入力してください）
+    = f.text_field :addition, class: 'form-control', id: 'machine_addition'
+  = f.submit nil, class: 'btn btn-primary'

@@ -1,2 +1,19 @@
-h1 Machines#show
-p Find me in app/views/machines/show.html.slim
+h1 設備詳細
+
+.nav.justify-content-end
+  = link_to '設備一覧に戻る', machines_path, class: 'nav-link'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Machine.human_attribute_name(:id)
+      th= Machine.human_attribute_name(:machine_name)
+      th= Machine.human_attribute_name(:addition)
+  tbody
+    td= @machine.id
+    td= @machine.machine_name
+    td= @machine.addition
+
+= link_to '編集する', edit_machine_path, class: 'btn btn-primary mr-3'
+= link_to '削除する', @machine, method: :delete, data: { confirm: "「#{@machine.machine_name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
