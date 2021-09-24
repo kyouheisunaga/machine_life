@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :machines, dependent: :destroy
   has_many :stock_parts, dependent: :destroy
+  has_many :machine_parts, dependent: :destroy
 
 end

@@ -2,11 +2,15 @@ class MachinesController < ApplicationController
   before_action :move_to_index, except: [:index]
 
   def index
-    @machines = Machine.all
+    if user_signed_in?
+      @machines = current_user.machines
+    else
+      redirect_to sign_in_url, notice: "ログインしてください"
+    end
   end
 
   def show
-    @machine = Machine.find(params[:id])
+    @machine = current_user.machines.find(params[:id])
   end
 
   def new
@@ -14,7 +18,7 @@ class MachinesController < ApplicationController
   end
 
   def create
-    @machine = Machine.new(machine_params)
+    @machine = Machine.new(machine_params.merge(user_id: currrent_user.id))
 
     if @machine.save
       redirect_to machines_url, notice:"設備「#{@machine.machine_name}」を登録しました"
@@ -24,13 +28,19 @@ class MachinesController < ApplicationController
   end
 
   def edit
-    @machine = Machine.find(params[:id])
+    @machine = current_user.machines.find(params[:id])
   end
 
   def update
-    machine = Machine.find(params[:id])
+    machine = current_user.machines.find(params[:id])
     machine.update!(machine_params)
     redirect_to machine_url, notice: "設備「#{machine.machine_name}」を更新しました"
+  end
+
+  def destroy
+    machine = current_user.machines.find(params[:id])
+    machine.destroy
+    redirect_to machines_url, notice: "設備「#{machine.machine_name}」を削除しました"
   end
 
   private

@@ -15,6 +15,7 @@
 ### Association
 - has_many :machines, dependent: :destroy
 - has_many :stock_parts, dependent: :destroy
+- has_many :machine_parts, dependent: :destroy
 
 ## machinesテーブル
 
@@ -58,10 +59,12 @@
 |replacement_procedure_memo               |text   ||
 |machine_id                               |integer|null: false, foreign_key: true|
 |stock_part_id                            |integer|null: false, foreign_key: true|
+|user_id                                  |integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :machine
-- belongs_to :machine_part
+- belongs_to :stock_part
+- belongs_to :user
 - has_one :video, dependent: :destroy
 - has_many :images, dependent: :destroy
 - has_many :exchange_historys, dependent: :destroy

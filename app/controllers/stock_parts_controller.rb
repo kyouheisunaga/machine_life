@@ -2,11 +2,15 @@ class StockPartsController < ApplicationController
   before_action :move_to_index, except: [:index]
 
   def index
-    @stock_parts = StockPart.all
+    if user_signed_in?
+      @stock_parts = current_user.stock_parts
+    else
+      redirect_to sign_in_url, notice: "ログインしてください"
+    end
   end
 
   def show
-    @stock_part = StockPart.find(params[:id])
+    @stock_part = current_user.stock_parts.find(params[:id])
   end
 
   def new
@@ -14,7 +18,7 @@ class StockPartsController < ApplicationController
   end
 
   def create
-    @stock_part = StockPart.new(stock_part_params)
+    @stock_part = StockPart.new(stock_part_params.merge(user_id: currrent_user.id))
 
     if @stock_part.save
       redirect_to stock_parts_url, notice:"在庫部品「#{@stock_part.stock_parts_name}」を登録しました"
@@ -24,17 +28,17 @@ class StockPartsController < ApplicationController
   end
 
   def edit
-    @stock_part = StockPart.find(params[:id])
+    @stock_part = current_user.stock_parts.find(params[:id])
   end
 
   def update
-    stock_part = StockPart.find(params[:id])
+    stock_part = current_user.stock_parts.find(params[:id])
     stock_part.update!(stock_part_params)
     redirect_to stock_parts_url, notice: "在庫部品「#{stock_part.stock_parts_name}」を更新しました"
   end
 
   def destroy
-    stock_part = StockPart.find(params[:id])
+    stock_part = current_user.stock_parts.find(params[:id])
     stock_part.destroy
     redirect_to stock_parts_url, notice: "在庫部品「#{stock_part.stock_parts_name}」を削除しました"
   end
