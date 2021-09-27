@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'machine_parts#index'
+  get 'overviews/index'
+  root to: 'overviews#index'
   resources :machine_parts
   resources :stock_parts
   resources :machines

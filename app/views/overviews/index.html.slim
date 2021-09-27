@@ -1,0 +1,51 @@
+- if user_signed_in?
+  .nav.justify-content-end
+    = link_to '設備部品一覧を見る', machine_parts_path, class: 'nav-link'
+    = link_to '在庫部品一覧を見る', stock_parts_path, class: 'nav-link'
+    = link_to '設備一覧を見る', machines_path, class: 'nav-link'
+
+.top-wrapper
+  .container
+    h1 MACHINE PARTS LIFE KEEPER.
+    p このアプリは、機械の消耗品部品を効率的に交換・在庫を管理する為のサービスです。
+    p 機械と部品を簡単に登録できます。機械の稼働時間を入力すれば、積算されて、交換時期を知らせてくれます。
+    .nav.justify-content-center
+      - if user_signed_in?
+        = link_to '運用を始める', machine_parts_path, class: 'btn btn-primary'
+      - else
+        = link_to '新規登録をする', new_user_registration_path, class: 'btn btn-primary'
+.lesson-wrapper
+  .container
+    .heading
+      h2 具体的に どんな機能なのか？
+    .lessons
+      .lesson
+        .lesson-icon
+          img src="https://prog-8.com/images/html/advanced/html.png"
+          p 部品の交換時期を<br>知らせてくれる
+        p class="txt-contents" Webページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。
+      .lesson
+        .lesson-icon
+          img src="https://prog-8.com/images/html/advanced/jQuery.png"
+          p 部品の在庫がないと<br>知らせてくれる
+        p class="txt-contents" 素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。
+      .lesson
+        .lesson-icon
+          img src="https://prog-8.com/images/html/advanced/ruby.png"
+          p 在庫管理が出来る<br>コスト算出も出来る
+        p class="txt-contents" オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。
+      .lesson
+        .lesson-icon
+          img src="https://prog-8.com/images/html/advanced/php.png"
+          p 交換マニュアル動画を<br>保存できる
+        p class="txt-contents" HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。
+.message-wrapper
+  .container
+    .heading
+      h2 さぁ、あなたもProgateでプログラミングを学んでみませんか?
+      h3 Let's learn to code, learn to be creative!
+    span class="btn message" さっそく開発する
+footer
+  .container
+    img src="https://prog-8.com/images/html/advanced/footer_logo.png"
+    p Learn to code, learn to be creative.

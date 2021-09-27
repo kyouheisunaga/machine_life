@@ -1,29 +1,31 @@
 doctype html
 html
   head
+    meta charset="utf-8"
     title
       | MachineLife
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    link rel="stylesheet" href="stylesheet.css"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand Machine life keeper
+      .navbar-brand 
+        = link_to 'Machine parts life keeper', root_path, class: 'nav-link'
     header
       nav
         - if user_signed_in?
           strong
-            = link_to current_user.username, machine_parts_path, class: 'nav-link'
+            = link_to current_user.username, edit_user_registration_path, class: 'nav-link'
           .nav.justify-content-end
             = link_to 'プロフィール変更', edit_user_registration_path, class: 'nav-link'
             = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
         - else
           .nav.justify-content-end
-            = link_to 'サインアップ', new_user_registration_path, class: 'nav-link'
+            = link_to '新規登録', new_user_registration_path, class: 'nav-link'
             = link_to 'ログイン', new_user_session_path, class: 'nav-link'
-    /p class="notice" = notice
-    /p class="alert" = alert
     .container
       - if flash.notice.present?
         .alert.alert-success= flash.notice

@@ -11,7 +11,7 @@ class MachinePartsController < ApplicationController
 
   def show
     @machine_part = current_user.machine_parts.find(params[:id])
-    @stock_part = current_user.stock_parts.find(@machine_part.id)
+    @stock_part = current_user.stock_parts.find(@machine_part.stock_part_id)
   end
 
   def new
@@ -19,7 +19,7 @@ class MachinePartsController < ApplicationController
   end
 
   def create
-    machine_part = MachinePart.new(machine_part_params.merge(user_id: currrent_user.id))
+    machine_part = MachinePart.new(machine_part_params)
     machine_part.save!
     redirect_to machine_parts_url, notice: "設備部品を登録しました"
   end

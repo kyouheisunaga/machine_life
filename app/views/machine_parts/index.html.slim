@@ -29,11 +29,11 @@ table.table.table-hover
       tr
         td= a
         - a += 1
-        td= @stock_parts.find(machine_part.id).stock_parts_name
-        td= @stock_parts.find(machine_part.id).model
-        td= @stock_parts.find(machine_part.id).maker
-        td= @stock_parts.find(machine_part.id).price
-        td= @stock_parts.find(machine_part.id).stock
+        td= @stock_parts.find(machine_part.stock_part_id).stock_parts_name
+        td= @stock_parts.find(machine_part.stock_part_id).model
+        td= @stock_parts.find(machine_part.stock_part_id).maker
+        td= @stock_parts.find(machine_part.stock_part_id).price
+        td= @stock_parts.find(machine_part.stock_part_id).stock
         td= machine_part.number_of_use
         td= machine_part.replacement_frequency_setting
         td= machine_part.machine_parts_operating_time_accumulation
