@@ -14,38 +14,44 @@
         = link_to '運用を始める', machine_parts_path, class: 'btn btn-primary'
       - else
         = link_to '新規登録をする', new_user_registration_path, class: 'btn btn-primary'
-.lesson-wrapper
+        = link_to 'ログインする', new_user_session_path, class: 'btn btn-primary'
+.explanation-wrapper
   .container
     .heading
-      h2 具体的に どんな機能なのか？
-    .lessons
-      .lesson
-        .lesson-icon
-          img src="https://prog-8.com/images/html/advanced/html.png"
+      h2 どんな機能なのか？
+    .explanations
+      .explanation
+        .explanation-icon
+          .image-frame.light-orenge
           p 部品の交換時期を<br>知らせてくれる
-        p class="txt-contents" Webページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。
-      .lesson
-        .lesson-icon
-          img src="https://prog-8.com/images/html/advanced/jQuery.png"
+        p class="txt-contents" 部品の交換時期を、1万時間運転後に交換といった「運転時間」で管理することができます。急な増産対応や減産対応で、「日付」で管理していた場合に対応できない「定期交換の無駄」を減らすことができます。
+      .explanation
+        .explanation-icon
+          .image-frame.light-pink
           p 部品の在庫がないと<br>知らせてくれる
-        p class="txt-contents" 素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。
-      .lesson
-        .lesson-icon
-          img src="https://prog-8.com/images/html/advanced/ruby.png"
-          p 在庫管理が出来る<br>コスト算出も出来る
-        p class="txt-contents" オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。
-      .lesson
-        .lesson-icon
-          img src="https://prog-8.com/images/html/advanced/php.png"
-          p 交換マニュアル動画を<br>保存できる
-        p class="txt-contents" HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。
+        p class="txt-contents" 部品の交換時期が近づいた時に、必要な分の在庫が足りない場合は、発注する部品リストで、確認することができます。どの部品が何個足りないのかが、ひと目で分かります。また、発注し忘れで期限までに交換できないといったミスを防ぐことができます。
+      .explanation
+        .explanation-icon
+          .image-frame.yellow-green
+          p 在庫管理ができる<br>コスト算出もできる
+        p class="txt-contents" 部品の在庫がどれくらいあるかを確認したり、各部品の金額を入力すれば、各々の機械にかかる部品代の年間費用がわかります。詳細メモに、部品の保管場所を入力しておくと、探す手間が省けます。
+      .explanation
+        .explanation-icon
+          .image-frame.sky-blue
+          p 交換手順動画を<br>保存できる
+        p class="txt-contents" 部品を交換する時に、担当者がまだ不慣れな方には、交換手順動画を作成して頂き、こちらで保管することができます。既存のPC内のフォルダで保管している方は、こちらのアプリ内で保管をすれば、PCの空き容量が増えますし、動画を探す手間を省けます。
 .message-wrapper
   .container
     .heading
-      h2 さぁ、あなたもProgateでプログラミングを学んでみませんか?
-      h3 Let's learn to code, learn to be creative!
-    span class="btn message" さっそく開発する
+      h2 部品が壊れてから交換してませんか？
+      h2 まだ使えそうなのに交換してませんか？
+      p そんな無駄を減らして、機械や地球、人に優しい環境を目指しましょう！
+    .nav.justify-content-center
+      - if user_signed_in?
+        = link_to '運用を始める', machine_parts_path, class: 'btn btn-primary'
+      - else
+        = link_to '新規登録をする', new_user_registration_path, class: 'btn btn-primary'
 footer
   .container
-    img src="https://prog-8.com/images/html/advanced/footer_logo.png"
-    p Learn to code, learn to be creative.
+    p 〜 新しい時代に足跡付ける 〜
+    = link_to 'Machine parts life keeper', root_path, class: 'nav-link'
