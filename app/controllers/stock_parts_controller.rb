@@ -18,7 +18,7 @@ class StockPartsController < ApplicationController
   end
 
   def create
-    @stock_part = StockPart.new(stock_part_params.merge(user_id: currrent_user.id))
+    @stock_part = StockPart.new(stock_part_params)
 
     if @stock_part.save
       redirect_to stock_parts_url, notice:"在庫部品「#{@stock_part.stock_parts_name}」を登録しました"

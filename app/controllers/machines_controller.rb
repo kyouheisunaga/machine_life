@@ -18,7 +18,7 @@ class MachinesController < ApplicationController
   end
 
   def create
-    @machine = Machine.new(machine_params.merge(user_id: currrent_user.id))
+    @machine = Machine.new(machine_params)
 
     if @machine.save
       redirect_to machines_url, notice:"設備「#{@machine.machine_name}」を登録しました"

@@ -6,10 +6,10 @@ h1 設備部品の新規登録
 = form_with model: @machine_part, local:true do |f|
   .form-group
     p 設備名
-    = f.collection_select :machine_id, Machine.all, :id, :machine_name, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_machine_id'}
+    = f.collection_select :machine_id, current_user.machines, :id, :machine_name, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_machine_id'}
   .form-group
     p 型式
-    = f.collection_select :stock_part_id, StockPart.all, :id, :model, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_stock_part_id'}
+    = f.collection_select :stock_part_id, current_user.stock_parts, :id, :model, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_stock_part_id'}
   .form-group
     = f.label :number_of_use
     = f.number_field :number_of_use, class: 'form-control', id: 'machine_part_number_of_use'
