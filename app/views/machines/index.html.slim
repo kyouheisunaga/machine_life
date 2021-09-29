@@ -23,9 +23,9 @@ table.table.table-hover
       tr
         td= a
         - a += 1
-        td= link_to machine.machine_name, machine
+        td= machine.machine_name
         td= machine.addition
-        td= link_to "詳細を見る", machine
+        td= link_to "詳細を見る", machine, class: 'nav-link'
         td
           = link_to '積算する', edit_machine_path(machine), class: 'btn btn-primary mr-3'
         td

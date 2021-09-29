@@ -8,6 +8,7 @@ table.table.table-hover
   thead.thead-default
     tr
       th= StockPart.human_attribute_name(:id)
+      th= Machine.human_attribute_name(:machine_name)
       th= StockPart.human_attribute_name(:stock_parts_name)
       th= StockPart.human_attribute_name(:model)
       th= StockPart.human_attribute_name(:maker)
@@ -15,6 +16,7 @@ table.table.table-hover
       th= StockPart.human_attribute_name(:price)
   tbody
     td= @stock_part.id
+    td= @machine.machine_name
     td= @stock_part.stock_parts_name
     td= @stock_part.model
     td= @stock_part.maker

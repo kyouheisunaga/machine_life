@@ -12,6 +12,7 @@ table.table.table-hover
   thead.thead-default
     tr
       th= MachinePart.human_attribute_name("番号")
+      th= Machine.human_attribute_name(:machine_name)
       th= StockPart.human_attribute_name(:stock_parts_name)
       th= StockPart.human_attribute_name(:model)
       th= StockPart.human_attribute_name(:maker)
@@ -25,10 +26,13 @@ table.table.table-hover
       th
   tbody
     - a = 1
+    - b = 0
+    - cost = 0
     - @machine_parts.each do |machine_part|
       tr
         td= a
         - a += 1
+        td= @machines.find(machine_part.machine_id).machine_name
         td= @stock_parts.find(machine_part.stock_part_id).stock_parts_name
         td= @stock_parts.find(machine_part.stock_part_id).model
         td= @stock_parts.find(machine_part.stock_part_id).maker
@@ -37,8 +41,13 @@ table.table.table-hover
         td= machine_part.number_of_use
         td= machine_part.replacement_frequency_setting
         td= machine_part.machine_parts_operating_time_accumulation
-        td= link_to "詳細を見る", machine_part
+        td= link_to "詳細を見る", machine_part, class: 'nav-link'
         td
           = link_to '編集する', edit_machine_part_path(machine_part), class: 'btn btn-primary mr-3'
         td
           = link_to '削除する', machine_part, method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'
+        - b = @stock_parts.find(machine_part.stock_part_id).price * machine_part.number_of_use
+        - cost += b
+
+h3 合計金額
+h4 #{cost}円

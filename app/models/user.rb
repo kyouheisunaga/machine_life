@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :stock_parts, dependent: :destroy
   has_many :machine_parts, dependent: :destroy
 
+  validates :nickname, presence: true
+
 end

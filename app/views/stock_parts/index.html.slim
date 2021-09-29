@@ -22,17 +22,24 @@ table.table.table-hover
       th
   tbody
     - a = 1
+    - b = 0
+    - cost = 0
     - @stock_parts.each do |stock_part|
       tr
         td= a
         - a += 1
-        td= link_to stock_part.stock_parts_name, stock_part
+        td= stock_part.stock_parts_name
         td= stock_part.model
         td= stock_part.maker
         td= stock_part.stock
         td= stock_part.price
-        td= link_to "詳細を見る", stock_part
+        td= link_to "詳細を見る", stock_part, class: 'nav-link'
         td
           = link_to '編集する', edit_stock_part_path(stock_part), class: 'btn btn-primary mr-3'
         td
           = link_to '削除する', stock_part, method: :delete, data: { confirm: "「#{stock_part.stock_parts_name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+        - b = stock_part.price * stock_part.stock
+        - cost += b
+
+h3 合計金額
+h4 #{cost}円

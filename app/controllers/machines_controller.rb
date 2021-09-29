@@ -34,6 +34,11 @@ class MachinesController < ApplicationController
   def update
     machine = current_user.machines.find(params[:id])
     machine.update!(machine_params)
+    # 積算できるように挑戦する
+    # addition = machine.machine_operating_time_accumulation
+    # addition += current_user.machine_parts.find(machine.machine_id).machine_parts_operating_time_accumulation
+    # machine_part.update!(machine_part_params)
+
     redirect_to machine_url, notice: "設備「#{machine.machine_name}」を更新しました"
   end
 

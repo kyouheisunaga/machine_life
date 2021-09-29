@@ -1,0 +1,41 @@
+- if machine_part.errors.present?
+  ul#error_explanation
+    - machine_part.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: machine_part, local:true do |f|
+  .form-group
+    p 設備名
+    = f.collection_select :machine_id, current_user.machines, :id, :machine_name, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_machine_id'}
+  .form-group
+    p 型式
+    = f.collection_select :stock_part_id, current_user.stock_parts, :id, :model, { prompt: "選択してください" } ,{class: 'form-control', id: 'machine_part_stock_part_id'}
+  .form-group
+    = f.label :number_of_use
+    = f.number_field :number_of_use, class: 'form-control', id: 'machine_part_number_of_use'
+  .form-group
+    = f.label :replacement_frequency_setting
+    = f.number_field :replacement_frequency_setting, class: 'form-control', id: 'machine_part_replacement_frequency_setting'
+  .form-group
+    = f.label :exchange_announcement
+    = f.number_field :exchange_announcement, class: 'form-control', id: 'machine_part_exchange_announcement'
+  .form-group
+    = f.label :order_announcement
+    = f.number_field :order_announcement, class: 'form-control', id: 'machine_part_order_announcement'
+  .form-group
+    = f.label :machine_parts_operating_time_accumulation
+    = f.number_field :machine_parts_operating_time_accumulation, class: 'form-control', id: 'machine_part_machine_parts_operating_time_accumulation'
+  .form-group
+    = f.label :machine_parts_details_memo
+    = f.text_area :machine_parts_details_memo, rows: 5, class: 'form-control', id: 'machine_part_machine_parts_details_memo'
+  .form-group
+    = f.label :replacement_procedure_memo
+    = f.text_area :replacement_procedure_memo, rows: 5, class: 'form-control', id: 'machine_part_replacement_procedure_memo'
+  / 動画と画像を保存できるように挑戦する
+  / .form-group
+  /   p 交換手順動画を保存する
+  /   = f.file_field :video, class: 'form-control', id: 'video_video'
+  .form-group
+    p 交換手順資料をスクショして画像で保存する
+    = f.file_field :image, class: 'form-control', id: 'image_image'
+  = f.submit nil, class: 'btn btn-primary'

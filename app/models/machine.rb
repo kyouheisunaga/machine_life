@@ -2,7 +2,7 @@ class Machine < ApplicationRecord
   belongs_to :user
   has_many :machine_parts, dependent: :destroy
 
-  validates :machine_name, presence: true
+  validates :machine_name,                        presence: true
   validates :machine_operating_time_accumulation, presence: true
 
   # # 設備新規登録で稼働系時間の欄に何も入力されなかった場合に発動する
