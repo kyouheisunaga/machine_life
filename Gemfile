@@ -71,5 +71,5 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'devise'
 gem 'carrierwave'
-
-
+gem 'pry-rails'
+gem 'ransack'

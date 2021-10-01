@@ -1,4 +1,4 @@
-h1 在庫部品一覧
+h1 在庫部品一覧・検索結果
 
 - if user_signed_in?
   .nav.justify-content-end
@@ -7,21 +7,7 @@ h1 在庫部品一覧
     = link_to '在庫部品一覧を見る', stock_parts_path, class: 'nav-link'
     = link_to '設備一覧を見る', machines_path, class: 'nav-link'
 
-h4 検索フォーム
-= search_form_for @q, url: search_stock_parts_path do |f|
-  = f.label :stock_parts_name
-  br
-  = f.search_field :stock_parts_name_cont
-  br
-  = f.label :model
-  br
-  = f.search_field :model_cont
-  br
-  = f.label :maker
-  br
-  = f.search_field :maker_cont
-  br
-  = f.submit '検索'
+= link_to 'もう一度 検索する', stock_parts_path, class: 'btn btn-primary'
 
 .mb-3
 table.table.table-hover
@@ -40,7 +26,7 @@ table.table.table-hover
     - a = 1
     - b = 0
     - cost = 0
-    - @stock_parts.each do |stock_part|
+    - @results.each do |stock_part|
       tr
         td= a
         - a += 1

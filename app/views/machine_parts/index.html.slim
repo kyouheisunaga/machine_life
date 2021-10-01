@@ -7,6 +7,22 @@ h1 設備部品一覧
     = link_to '在庫部品一覧を見る', stock_parts_path, class: 'nav-link'
     = link_to '設備一覧を見る', machines_path, class: 'nav-link'
 
+h4 検索フォーム
+= search_form_for @q, url: search_machine_parts_path do |f|
+  = f.label :stock_parts_name
+  br
+  = f.search_field :stock_parts_name_cont
+  br
+  = f.label :model
+  br
+  = f.search_field :model_cont
+  br
+  = f.label :maker
+  br
+  = f.search_field :maker_cont
+  br
+  = f.submit '検索'
+
 .mb-3
 table.table.table-hover
   thead.thead-default
@@ -21,7 +37,7 @@ table.table.table-hover
       th= MachinePart.human_attribute_name(:number_of_use)
       th= MachinePart.human_attribute_name(:replacement_frequency_setting)
       th= MachinePart.human_attribute_name(:machine_parts_operating_time_accumulation)
-      th= StockPart.human_attribute_name("在庫部品詳細")
+      th= StockPart.human_attribute_name("設備部品詳細")
       th
       th
   tbody
@@ -49,5 +65,5 @@ table.table.table-hover
         - b = @stock_parts.find(machine_part.stock_part_id).price * machine_part.number_of_use
         - cost += b
 
-h3 合計金額
+h4 合計金額（価格×使用個数で各部品を足した値）
 h4 #{cost}円

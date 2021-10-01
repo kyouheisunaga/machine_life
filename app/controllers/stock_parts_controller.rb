@@ -1,5 +1,6 @@
 class StockPartsController < ApplicationController
   before_action :move_to_index, except: [:index]
+  before_action :set_q, only: [:index, :search]
 
   def index
     if user_signed_in?
@@ -43,7 +44,23 @@ class StockPartsController < ApplicationController
     redirect_to stock_parts_url, notice: "在庫部品「#{stock_part.stock_parts_name}」を削除しました"
   end
 
+  # def search
+  #   if params[:stock_parts_name].present?
+  #     @stock_parts = StockPart.where('name LIKE ?', "%#{params[:stock_parts_name]}%")
+  #   else
+  #     @stock_parts = StockPart.none
+  #   end
+  # end
+
+  def search
+    @results = @q.result
+  end
+
   private
+
+  def set_q
+    @q = current_user.stock_parts.ransack(params[:q])
+  end
 
   def stock_part_params
     params.require(:stock_part).permit(:stock_parts_name, :model, :maker, :stock, :price, :stock_parts_details_memo).merge(user_id: current_user.id)
